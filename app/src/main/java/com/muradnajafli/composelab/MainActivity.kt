@@ -13,7 +13,6 @@ import com.muradnajafli.composelab.spin_wheel.SpinWheelExampleUsage
 import com.muradnajafli.composelab.ui.theme.ComposeLabTheme
 
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
