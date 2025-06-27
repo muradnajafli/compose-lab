@@ -133,7 +133,7 @@ fun SpinWheelExampleUsage(
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = if (isSpinning) "Spinning..." else "Spin now!",
+                text = if (isSpinning) "Spinning..." else "Spin!",
                 color = Color.White,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold
