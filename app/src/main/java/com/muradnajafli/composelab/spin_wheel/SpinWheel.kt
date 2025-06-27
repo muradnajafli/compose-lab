@@ -46,7 +46,7 @@ fun <T> SpinWheel(
     wheelSize: Dp = 300.dp,
     borderSize: Dp = 16.dp,
     centerSize: Dp = 40.dp,
-    iconSizeDp: Dp = 20.dp,
+    iconSize: Dp = 20.dp,
     spinDelay: Long = 150L,
     centerBrush: Brush,
     borderBrush: Brush,
@@ -61,7 +61,7 @@ fun <T> SpinWheel(
     val sectionAngle = 360f / sectionCount
 
     val iconPainter = rememberVectorPainter(image = iconVector)
-    val iconSize = with(LocalDensity.current) { iconSizeDp.toPx() }
+    val iconSize = with(LocalDensity.current) { iconSize.toPx() }
 
     var spinIndex by remember { mutableIntStateOf(initialSpinIndex) }
 
