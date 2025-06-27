@@ -53,6 +53,7 @@ fun <T> SpinWheel(
     borderBrush: Brush,
     isSpinning: Boolean,
     onSpinning: (Boolean) -> Unit = {},
+    backgroundColor: Color = Color.LightGray,
     iconPainter: Painter = rememberVectorPainter(image = ImageVector.vectorResource(R.drawable.ic_gift)),
     iconTint: Color = Color.White
 ) {
@@ -83,7 +84,7 @@ fun <T> SpinWheel(
             .size(wheelSize)
             .clip(CircleShape)
             .border(borderSize, borderBrush, CircleShape)
-            .background(Color.LightGray)
+            .background(backgroundColor)
     ) {
         Canvas(modifier = Modifier.fillMaxSize()) {
             repeat(sections.size) { index ->
