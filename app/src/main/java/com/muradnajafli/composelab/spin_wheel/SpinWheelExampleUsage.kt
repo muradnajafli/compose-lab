@@ -71,6 +71,7 @@ fun SpinWheelExampleUsage(
                 Color(0xFF97d66b) to "nope",
                 Color(0xFFed9f55) to "???"
             ),
+            iconVector = ImageVector.vectorResource(R.drawable.ic_gift),
             spinTimes = 15,
             centerBrush = Brush.sweepGradient(
                 colors = listOf(

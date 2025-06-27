@@ -53,7 +53,7 @@ fun <T> SpinWheel(
     isSpinning: Boolean,
     onSpinning: (Boolean) -> Unit = {},
     backgroundColor: Color = Color.LightGray,
-    iconVector: ImageVector = ImageVector.vectorResource(R.drawable.ic_gift),
+    iconVector: ImageVector,
     iconTint: Color = Color.White
 ) {
     val sectionList = sections.entries.toList()
@@ -162,6 +162,7 @@ private fun SpinWheelPrev() {
             Color(0xFF97d66b) to "Section 7",
             Color(0xFFed9f55) to "Section 8"
         ),
+        iconVector = ImageVector.vectorResource(R.drawable.ic_gift),
         borderBrush = Brush.linearGradient(
             colors = listOf(
                 Color(0xFF896BF4),
