@@ -64,15 +64,15 @@ fun SpinWheelExampleUsage(
             sections = mapOf(
                 Color(0xFFe8515d) to "absolutely nothing",
                 Color(0xFFe360ef) to "still nothing...",
-                Color(0xFF785bf3) to "no reward",
-                Color(0xFF4981f5) to "haha no",
-                Color(0xFF97d66b) to "nothing",
+                Color(0xFF785bf3) to "nothing",
+                Color(0xFF4981f5) to "nope",
+                Color(0xFF97d66b) to "haha no",
                 Color(0xFF71c3ea) to "null :d",
-                Color(0xFF97d66b) to "nope",
+                Color(0xFF97d66b) to "no reward",
                 Color(0xFFed9f55) to "???"
             ),
             iconVector = ImageVector.vectorResource(R.drawable.ic_gift),
-            spinTimes = 15,
+            spinTimes = 16,
             centerBrush = Brush.sweepGradient(
                 colors = listOf(
                     Color(0xFF4f49ef),
