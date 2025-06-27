@@ -43,7 +43,7 @@ fun <T> SpinWheel(
     sections: Map<Color, T>,
     onResult: (Pair<Color, T>) -> Unit,
     initialSpinIndex: Int = 0,
-    spinTimes: Int = 15,
+    spinTimes: Int,
     wheelSize: Dp = 300.dp,
     borderSize: Dp = 16.dp,
     centerSize: Dp = 40.dp,
@@ -54,12 +54,14 @@ fun <T> SpinWheel(
     isSpinning: Boolean,
     onSpinning: (Boolean) -> Unit = {},
     backgroundColor: Color = Color.LightGray,
-    iconPainter: Painter = rememberVectorPainter(image = ImageVector.vectorResource(R.drawable.ic_gift)),
+    iconVector: ImageVector = ImageVector.vectorResource(R.drawable.ic_gift),
     iconTint: Color = Color.White
 ) {
     val sectionList = sections.entries.toList()
     val sectionCount = sectionList.size
     val sectionAngle = 360f / sectionCount
+
+    val iconPainter = rememberVectorPainter(image = iconVector)
 
     val iconSize = with(LocalDensity.current) { iconSizeDp.toPx() }
 
@@ -183,6 +185,7 @@ private fun SpinWheelPrev() {
                 Color(0xFF8925f5),
                 Color(0xFF4f49ef)
             ),
-        )
+        ),
+        spinTimes = 15
     )
 }

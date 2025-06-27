@@ -71,6 +71,7 @@ fun SpinWheelExampleUsage(
                 Color(0xFF97d66b) to "nope",
                 Color(0xFFed9f55) to "???"
             ),
+            spinTimes = 15,
             centerBrush = Brush.sweepGradient(
                 colors = listOf(
                     Color(0xFF4f49ef),
