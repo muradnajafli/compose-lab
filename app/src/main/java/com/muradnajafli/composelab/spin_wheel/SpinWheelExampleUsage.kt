@@ -28,6 +28,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -49,9 +50,9 @@ import com.muradnajafli.composelab.R
 fun SpinWheelExampleUsage(
     modifier: Modifier = Modifier
 ) {
-    var isSpinning by remember { mutableStateOf(false) }
-    var isResultVisible by remember { mutableStateOf(false) }
-    var result by remember { mutableStateOf<Pair<Color, String>?>(null) }
+    var isSpinning by rememberSaveable { mutableStateOf(false) }
+    var isResultVisible by rememberSaveable { mutableStateOf(false) }
+    var result by rememberSaveable { mutableStateOf<Pair<Color, String>?>(null) }
 
     Box(
         modifier = modifier

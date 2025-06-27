@@ -21,6 +21,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -42,7 +43,7 @@ fun <T> SpinWheel(
     sections: Map<Color, T>,
     onResult: (Pair<Color, T>) -> Unit,
     initialSpinIndex: Int = 0,
-    spinTimes: Int = 5,
+    spinTimes: Int = 10,
     wheelSize: Dp = 300.dp,
     borderSize: Dp = 16.dp,
     centerSize: Dp = 40.dp,
@@ -65,12 +66,14 @@ fun <T> SpinWheel(
 
     LaunchedEffect(isSpinning) {
         if (isSpinning) {
-            repeat(spinTimes) {
+            repeat(spinTimes) { i ->
                 spinIndex++
-                delay(spinDelay)
+                val progress = i.toFloat() / spinTimes
+                val currentDelay = spinDelay * (1 + 4 * progress * progress)
+                delay(currentDelay.toLong())
             }
             val resultEntry = sectionList[spinIndex % sectionCount]
-            onResult(Pair(resultEntry.key, resultEntry.value))
+            onResult(resultEntry.key to resultEntry.value)
             onSpinning(false)
         }
     }
@@ -86,7 +89,7 @@ fun <T> SpinWheel(
             repeat(sections.size) { index ->
                 val startAngle = index * sectionAngle
                 val centerAngle = startAngle + sectionAngle / 2
-                val mIndex = spinIndex % sectionCount
+                val currentIndex = spinIndex % sectionCount
 
                 val entry = sectionList[index]
                 val color = entry.key
@@ -96,7 +99,7 @@ fun <T> SpinWheel(
                     startAngle = startAngle,
                     sweepAngle = sectionAngle,
                     topLeft = Offset.Zero,
-                    alpha = if (index == mIndex.toString().toInt()) 1f else 0.5f,
+                    alpha = if (index == currentIndex.toString().toInt()) 1f else 0.5f,
                     useCenter = true
                 )
 
@@ -107,15 +110,20 @@ fun <T> SpinWheel(
                 val iconY = size.height / 2 + radius * sin(angleInRadians) - iconSize / 2
 
                 translate(iconX.toFloat(), iconY.toFloat()) {
-                    with(iconPainter) {
-                        draw(
-                            size = Size(iconSize, iconSize),
-                            colorFilter = ColorFilter.tint(
-                                color = iconTint.copy(
-                                    if (index == mIndex.toString().toInt()) 1f else 0.5f
+                    rotate(
+                        degrees = centerAngle + 90f,
+                        pivot = Offset(iconSize / 2, iconSize / 2)
+                    ) {
+                        with(iconPainter) {
+                            draw(
+                                size = Size(iconSize, iconSize),
+                                colorFilter = ColorFilter.tint(
+                                    color = iconTint.copy(
+                                        if (index == currentIndex) 1f else 0.5f
+                                    )
                                 )
                             )
-                        )
+                        }
                     }
                 }
             }
@@ -162,7 +170,6 @@ private fun SpinWheelPrev() {
             ),
             start = Offset(0f, 0f),
             end = Offset(600f, 600f),
-            tileMode = androidx.compose.ui.graphics.TileMode.Clamp
         ),
         isSpinning = false,
         centerBrush = Brush.sweepGradient(
