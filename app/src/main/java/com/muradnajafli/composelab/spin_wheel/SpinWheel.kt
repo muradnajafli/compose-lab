@@ -47,7 +47,7 @@ fun <T> SpinWheel(
     borderSize: Dp = 16.dp,
     centerSize: Dp = 40.dp,
     iconSize: Dp = 20.dp,
-    spinDelay: Long = 150L,
+    spinDelay: Long = 100L,
     centerBrush: Brush,
     borderBrush: Brush,
     isSpinning: Boolean,
